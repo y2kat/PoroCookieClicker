@@ -22,27 +22,33 @@ public class CookieClicker : MonoBehaviour
     //GRANDMA
     public Button grandmaButton;
     public TextMeshProUGUI grandmaButtonText;
-    public static float grandmaAutoClickInterval = 8.0f; // Intervalo de clics automáticos para el Cursor
+    public static float grandmaAutoClickInterval = 8.0f;
     private float grandmaAutoClickTimer = 0.0f;
 
 
     //FARM
     public Button farmButton;
     public TextMeshProUGUI farmButtonText;
-    public static float farmAutoClickInterval = 7.0f; // Intervalo de clics automáticos para el Cursor
+    public static float farmAutoClickInterval = 7.0f;
     private float farmAutoClickTimer = 0.0f;
 
     //MINE
     public Button mineButton;
     public TextMeshProUGUI mineButtonText;
-    public static float mineAutoClickInterval = 5.0f; // Intervalo de clics automáticos para el Cursor
+    public static float mineAutoClickInterval = 5.0f;
     private float mineAutoClickTimer = 0.0f;
 
     // variables específicas de los edificios
-    private int cursorCount = 0;
-    private int grandmaCount = 0;
-    private int farmCount = 0;
-    private int mineCount = 0;
+    public static int cursorCount = 0;
+    public static int grandmaCount = 0;
+    public static int farmCount = 0;
+    public static int mineCount = 0;
+
+    //variables específicas para los buff
+    public Buff cursorBuff;
+    public Buff grandmaBuff; 
+    public Buff farmBuff; 
+    public Buff mineBuff;
 
     // clase para representar las mejoras
     public class Upgrade
@@ -139,6 +145,7 @@ public class CookieClicker : MonoBehaviour
             score -= cursorUpgrade.baseCost;
             cursorCount++;
             cursorUpgrade.baseCost = Mathf.RoundToInt(cursorUpgrade.baseCost * cursorUpgrade.costMultiplier);
+            cursorBuff.CheckBuildingCount();
         }
     }
 
@@ -155,6 +162,7 @@ public class CookieClicker : MonoBehaviour
             score -= grandmaUpgrade.baseCost;
             grandmaCount++;
             grandmaUpgrade.baseCost = Mathf.RoundToInt(grandmaUpgrade.baseCost * grandmaUpgrade.costMultiplier);
+            grandmaBuff.CheckBuildingCount();
         }
     }
 
@@ -171,6 +179,7 @@ public class CookieClicker : MonoBehaviour
             score -= farmUpgrade.baseCost;
             farmCount++;
             farmUpgrade.baseCost = Mathf.RoundToInt(farmUpgrade.baseCost * farmUpgrade.costMultiplier);
+            farmBuff.CheckBuildingCount();
         }
     }
 
@@ -187,6 +196,7 @@ public class CookieClicker : MonoBehaviour
             score -= mineUpgrade.baseCost;
             mineCount++;
             mineUpgrade.baseCost = Mathf.RoundToInt(mineUpgrade.baseCost * mineUpgrade.costMultiplier);
+            mineBuff.CheckBuildingCount();
         }
     }
 

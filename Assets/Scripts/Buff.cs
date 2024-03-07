@@ -16,6 +16,7 @@ public class Buff : MonoBehaviour
     void Start()
     {
         buffButton.onClick.AddListener(ApplyBuff);
+        buffButton.gameObject.SetActive(false); // Desactiva el botón al inicio
         UpdateButtonText();
     }
 
@@ -50,4 +51,28 @@ public class Buff : MonoBehaviour
     {
         buffButtonText.text = buildingType + " Buff\nCost: " + buffCost;
     }
+
+    public void CheckBuildingCount()
+    {
+        switch (buildingType)
+        {
+            case "Cursor":
+                if (CookieClicker.cursorCount > 0)
+                    buffButton.gameObject.SetActive(true);
+                break;
+            case "Grandma":
+                if (CookieClicker.grandmaCount > 0)
+                    buffButton.gameObject.SetActive(true);
+                break;
+            case "Farm":
+                if (CookieClicker.farmCount > 0)
+                    buffButton.gameObject.SetActive(true);
+                break;
+            case "Mine":
+                if (CookieClicker.mineCount > 0)
+                    buffButton.gameObject.SetActive(true);
+                break;
+        }
+    }
+
 }

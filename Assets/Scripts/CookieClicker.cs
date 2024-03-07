@@ -9,7 +9,7 @@ public class CookieClicker : MonoBehaviour
 {
     public Button cookieButton; // botón que representa la galleta
     public TextMeshProUGUI scoreText; // texto de la UI donde se mostrará el contador
-    public static int score = 0; // el contador
+    public static float score = 0; // el contador
     private float cookiesPerSecond = 0.0f; // contador de galletas por segundo (CPS)
 
     //CURSOR
@@ -86,7 +86,12 @@ public class CookieClicker : MonoBehaviour
         // calcula las galletas por segundo (CPS)
         cookiesPerSecond = (cursorCount * 0.1f) + (grandmaCount * 1.0f) + (farmCount * 5.0f) + (mineCount * 10.0f);
 
-        scoreText.text = "Cookies: " + score + "\nCookies per Second: " + cookiesPerSecond.ToString("F2");
+        score += cursorCount * 0.1f * Time.deltaTime; // 0.1 galletas por segundo por Cursor
+        score += grandmaCount * 1.0f * Time.deltaTime; // 1 galleta por segundo por Grandma
+        score += farmCount * 5.0f * Time.deltaTime; // 5 galletas por segundo por Farm
+        score += mineCount * 10.0f * Time.deltaTime;
+
+        scoreText.text = "Cookies: " + Mathf.RoundToInt(score) + "\nCookies per Second: " + cookiesPerSecond.ToString("F2");
         cursorButtonText.text = "Cursor\nCost: " + cursorUpgrade.baseCost + "\nOwned: " + cursorCount;
         grandmaButtonText.text = "Grandma\nCost: " + grandmaUpgrade.baseCost + "\nOwned: " + grandmaCount;
         farmButtonText.text = "Farm\nCost: " + farmUpgrade.baseCost + "\nOwned: " + farmCount;
@@ -123,11 +128,18 @@ public class CookieClicker : MonoBehaviour
             IncrementScore();
             Debug.Log("Mina +1");
         }
+
+        IncrementScorePerSecond();
     }
 
     void IncrementScore()
     {
         score++; // incrementa el contador
+    }
+
+    void IncrementScorePerSecond()
+    {
+        score += Mathf.RoundToInt(cookiesPerSecond * Time.deltaTime); // incrementa el contador en función del CPS
     }
 
     void BuyUpgrade(Upgrade upgrade)

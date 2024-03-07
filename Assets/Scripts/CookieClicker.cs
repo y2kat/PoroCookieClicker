@@ -9,33 +9,33 @@ public class CookieClicker : MonoBehaviour
 {
     public Button cookieButton; // botón que representa la galleta
     public TextMeshProUGUI scoreText; // texto de la UI donde se mostrará el contador
-    private int score = 0; // el contador
+    public static int score = 0; // el contador
     private float cookiesPerSecond = 0.0f; // contador de galletas por segundo (CPS)
 
     //CURSOR
     public Button cursorButton;
     public TextMeshProUGUI cursorButtonText;
-    private float cursorAutoClickInterval = 10.0f; // Intervalo de clics automáticos para el Cursor
+    public static float cursorAutoClickInterval = 10.0f; // Intervalo de clics automáticos para el Cursor
     private float cursorAutoClickTimer = 0.0f;
 
 
     //GRANDMA
     public Button grandmaButton;
     public TextMeshProUGUI grandmaButtonText;
-    private float grandmaAutoClickInterval = 8.0f; // Intervalo de clics automáticos para el Cursor
+    public static float grandmaAutoClickInterval = 8.0f; // Intervalo de clics automáticos para el Cursor
     private float grandmaAutoClickTimer = 0.0f;
 
 
     //FARM
     public Button farmButton;
     public TextMeshProUGUI farmButtonText;
-    private float farmAutoClickInterval = 7.0f; // Intervalo de clics automáticos para el Cursor
+    public static float farmAutoClickInterval = 7.0f; // Intervalo de clics automáticos para el Cursor
     private float farmAutoClickTimer = 0.0f;
 
     //MINE
     public Button mineButton;
     public TextMeshProUGUI mineButtonText;
-    private float mineAutoClickInterval = 5.0f; // Intervalo de clics automáticos para el Cursor
+    public static float mineAutoClickInterval = 5.0f; // Intervalo de clics automáticos para el Cursor
     private float mineAutoClickTimer = 0.0f;
 
     // variables específicas de los edificios
